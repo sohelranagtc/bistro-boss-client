@@ -2,28 +2,49 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import useMenu from '../../Hooks/useMenu';
+import FoodCard from './FoodCard/FoodCard';
+import OrderTab from './OrderTab/OrderTab';
 
 const ShopTabs = () => {
     const [tabIndex, setTabIndex] = useState(0)
+    const [menu] = useMenu()
+    const dessert = menu.filter(item => item.category === 'dessert')
+    const pizza = menu.filter(item => item.category === 'pizza')
+    const soup = menu.filter(item => item.category === 'soup')
+    const salad = menu.filter(item => item.category === 'salad')
+    const drinks = menu.filter(item => item.category === 'drinks')
 
     return (
-        <div className='flex justify-center'>
+        <div>
             <Helmet>
                 <title>Bistro Boss | Shop</title>
             </Helmet>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <TabList>
-                    <Tab>SALAD</Tab>
-                    <Tab>PIZZA</Tab>
-                    <Tab>SOUPS</Tab>
-                    <Tab>DESSERTS</Tab>
-                    <Tab>DRINKS</Tab>
-                </TabList>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
+                <div className='flex justify-center'>
+                    <TabList>
+                        <Tab>SALAD</Tab>
+                        <Tab>PIZZA</Tab>
+                        <Tab>SOUPS</Tab>
+                        <Tab>DESSERTS</Tab>
+                        <Tab>DRINKS</Tab>
+                    </TabList>
+                </div>
+                <TabPanel>
+                    <OrderTab item={salad}></OrderTab>
+                </TabPanel>
+                <TabPanel>
+                    <OrderTab item={pizza}></OrderTab>
+                </TabPanel>
+                <TabPanel>
+                    <OrderTab item={soup}></OrderTab>
+                </TabPanel>
+                <TabPanel>
+                    <OrderTab item={dessert}></OrderTab>
+                </TabPanel>
+                <TabPanel>
+                    <OrderTab item={drinks}></OrderTab>
+                </TabPanel>
             </Tabs>
         </div>
     );
