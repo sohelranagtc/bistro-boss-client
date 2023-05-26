@@ -20,7 +20,7 @@ import Shop from "../Pages/Shop/Shop";
           element : <Menu></Menu>
         },
         {
-          path : "/shop",
+          path : "/shop/:category",
           element : <Shop></Shop>
         }
       ]

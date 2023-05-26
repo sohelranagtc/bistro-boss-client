@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import MenuItem from './MenuItem';
 import useMenu from '../../../Hooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const PopularMenu = () => {
     const [menu] = useMenu()
@@ -20,7 +21,9 @@ const PopularMenu = () => {
                     ></MenuItem>)
                 }
             </div>
+            <Link to="/menu">
             <button className="btn btn-outline uppercase flex border-0 border-b-4 text-lg mx-auto">View Full Menu</button>
+            </Link>
         </section>
     );
 };

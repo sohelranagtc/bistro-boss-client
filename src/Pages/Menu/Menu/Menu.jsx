@@ -10,6 +10,7 @@ import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
 import soupImg from '../../../assets/menu/soup-bg.jpg'
 import saladImg from '../../../assets/menu/salad-bg.jpg'
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
+import { useParams } from 'react-router-dom';
 
 
 const Menu = () => {
@@ -30,32 +31,32 @@ const Menu = () => {
 
             <MenuCategory items={offered} ></MenuCategory>
 
-            <MenuCategory 
-            items={desert} 
-            image={desertImg} 
-            title="Deserts" 
-            subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis." 
+            <MenuCategory
+                items={desert}
+                image={desertImg}
+                title="desserts"
+                subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis."
             ></MenuCategory>
 
-            <MenuCategory 
-            items={pizza} 
-            image={pizzaImg} 
-            title="pizza" 
-            subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis." 
+            <MenuCategory
+                items={pizza}
+                image={pizzaImg}
+                title="pizza"
+                subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis."
             ></MenuCategory>
 
-            <MenuCategory 
-            items={salad} 
-            image={saladImg} 
-            title="salad" 
-            subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis." 
+            <MenuCategory
+                items={salad}
+                image={saladImg}
+                title="salad"
+                subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis."
             ></MenuCategory>
 
-            <MenuCategory 
-            items={soup} 
-            image={soupImg} 
-            title="soup" 
-            subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis." 
+            <MenuCategory
+                items={soup}
+                image={soupImg}
+                title="soup"
+                subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est obcaecati laudantium dicta facilis."
             ></MenuCategory>
 
         </div>
