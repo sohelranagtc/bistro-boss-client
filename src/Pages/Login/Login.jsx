@@ -3,8 +3,7 @@ import loginImg from '../../assets/others/authentication2.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
-import { Link } from 'react-router-dom';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import OthersSignIn from '../../Components/SectionTitle/OthersSignIn/OthersSignIn';
 import Swal from 'sweetalert2';
 
@@ -12,8 +11,11 @@ import Swal from 'sweetalert2';
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
     const captchaMatch = useRef(null)
-
     const { LogIn } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || "/"
 
     useEffect(() => {
         loadCaptchaEnginge(6)
@@ -37,11 +39,12 @@ const Login = () => {
                     }
                   })
                 console.log(user)
+                navigate(from, { replace: true })
             })
     }
 
-    const handleCaptcha = () => {
-        const user_captcha_value = captchaMatch.current.value
+    const handleCaptcha = e => {
+        const user_captcha_value = e.target.value
         if (validateCaptcha(user_captcha_value)) {
             setDisabled(false)
         }
@@ -77,9 +80,8 @@ const Login = () => {
                             </div>
                             <div className="form-control">
                                 < LoadCanvasTemplate />
-                                <div className='flex items-center'>
-                                    <input type="text" placeholder="Input Captcha" ref={captchaMatch} className="input input-bordered" />
-                                    <button onClick={handleCaptcha} className='btn uppercase flex border-0 border-b-4 text-lg mx-auto'>OK</button>
+                                <div className='form-control'>
+                                    <input type="text" onBlur={handleCaptcha} placeholder="Input Captcha" className="input input-bordered" />
                                 </div>
                             </div>
                             <div className="form-control mt-6">
@@ -91,6 +93,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+            
         </div>
     );
 };

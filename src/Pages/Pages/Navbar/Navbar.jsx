@@ -7,8 +7,8 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const handleLogOut = () => {
         logOut()
-        .then(()=>{})
-        .catch(error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
 
     const navbar =
@@ -16,13 +16,19 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/menu">Menu</Link></li>
             <li><Link to="/shop/salad">Shop</Link></li>
+            <li><Link to="/secrect">Secret</Link></li>
         </>
+
     const login =
         <>
             {
                 user ?
                     <>
-                        <FaUser></FaUser>
+                        <div className="avatar mr-5 tooltip tooltip-bottom" data-tip={user?.displayName}>
+                            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src={user?.photoURL} />
+                            </div>
+                        </div>
                         <Link><button onClick={handleLogOut} className="btn bg-orange-600">Log Out</button></Link>
                     </> :
                     <>
