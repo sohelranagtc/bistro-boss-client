@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const Navbar = () => {
-
     const navbar =
         <>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/menu">Menu</Link></li>
             <li><Link to="/shop/salad">Shop</Link></li>
+        </>
+    const login =
+        <>
+            <Link to="/login"><button className="btn bg-orange-600">Login</button></Link>
         </>
     return (
         <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-25 text-white bg-black">
@@ -27,8 +30,8 @@ const Navbar = () => {
                     {navbar}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Get started</a>
+            <div className="navbar-end ">
+                {login}
             </div>
         </div>
     );

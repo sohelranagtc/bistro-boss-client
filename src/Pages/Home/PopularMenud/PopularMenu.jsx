@@ -16,13 +16,13 @@ const PopularMenu = () => {
             <div className='grid md:grid-cols-2 gap-10 mb-5'>
                 {
                     popular.map(item => <MenuItem
-                    key={item.id}
-                    item={item}
+                        key={item.id}
+                        item={item}
                     ></MenuItem>)
                 }
             </div>
             <Link to="/menu">
-            <button className="btn btn-outline uppercase flex border-0 border-b-4 text-lg mx-auto">View Full Menu</button>
+                <button className="btn btn-outline uppercase flex border-0 border-b-4 text-lg mx-auto">View Full Menu</button>
             </Link>
         </section>
     );
