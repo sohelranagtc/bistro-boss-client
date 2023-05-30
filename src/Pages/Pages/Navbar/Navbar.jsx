@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { FaUser } from 'react-icons/fa';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import useCart from '../../../Hooks/UseCart';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [cart] = useCart()
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -24,6 +26,12 @@ const Navbar = () => {
             {
                 user ?
                     <>
+                        <Link to="/dashboard/mycart">
+                            <button className="btn mr-5 gap-2">
+                                <FaShoppingCart></FaShoppingCart>
+                                <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                            </button>
+                        </Link>
                         <div className="avatar mr-5 tooltip tooltip-bottom" data-tip={user?.displayName}>
                             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src={user?.photoURL} />
