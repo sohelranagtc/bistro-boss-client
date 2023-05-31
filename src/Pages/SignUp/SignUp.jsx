@@ -18,18 +18,35 @@ const SignUp = () => {
         CreateUser(data.email, data.password)
             .then(result => {
                 const user = result.user
-                Swal.fire({
-                    title: 'Sign Up Successfully',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                })
-                userUpdate(data.name, data.photo)
                 console.log(user)
-                navigate(from, { replace: true })
+                userUpdate(data.name, data.photo)
+                    .then(() => {
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset()
+                                    Swal.fire({
+                                        title: 'Sign Up Successfully',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    })
+                                    navigate(from, { replace: true })
+                                }
+                            })
+                    })
+                    .catch(error => console.log(error))
             })
     }
     return (
@@ -90,7 +107,6 @@ const SignUp = () => {
                         </form>
                         <div>
                             <OthersSignIn></OthersSignIn>
-
                         </div>
                     </div>
                 </div>

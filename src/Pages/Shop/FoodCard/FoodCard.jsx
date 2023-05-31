@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useCart from '../../../Hooks/UseCart';
+import useCart from '../../../Hooks/useCart';
 
 const FoodCard = ({ item }) => {
     const { name, price, image, recipe, _id } = item
@@ -13,7 +13,7 @@ const FoodCard = ({ item }) => {
     const location = useLocation()
 
     const handleAddToCard = (item) => {
-        const menuItem = { cartItemId: _id, name, price, image, email: user.email }
+        const menuItem = { cartItemId: _id, name, price, image, email: user?.email }
         if (user && user?.email) {
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
