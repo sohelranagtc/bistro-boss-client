@@ -26,7 +26,7 @@ const Navbar = () => {
             {
                 user ?
                     <>
-                        <Link to="/dashboard/mycart">
+                        <Link to="/dashboard">
                             <button className="btn mr-5 gap-2">
                                 <FaShoppingCart></FaShoppingCart>
                                 <div className="badge badge-secondary">+{cart?.length || 0}</div>
