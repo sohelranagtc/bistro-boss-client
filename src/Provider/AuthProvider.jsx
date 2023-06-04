@@ -50,7 +50,7 @@ useEffect(()=>{
             axios.post('http://localhost:5000/jwt', {email : CurrentUser.email})
             .then(data =>{
                 // console.log(data.data)
-                localStorage.setItem('access-token', data.data)
+                localStorage.setItem('access-token', data.data.token)
                 setLoading(false)
             })
         }
